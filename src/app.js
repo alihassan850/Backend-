@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import parseCookie from 'cookie';
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -19,6 +19,18 @@ app.use(express.urlencoded({ extended: true, limit: '20kb' }));
 //This middleware is used to serve static file (images, CSS files, JS files, HTML files, PDF) to the folder (public)
 app.use(express.static('public'));  
 
-app.use(cookieParser())
+app.use(cookieParser());
+
+
+
+
+//routes import     
+import {userRouter} from './routes/user.routes.js'
+
+
+
+
+//routes declaration
+app.use("/api/v1/users", userRouter);
 
 export default app;
