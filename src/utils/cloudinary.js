@@ -1,5 +1,5 @@
-import {vs as cloudinary} from cloudinary
-import fs from fs  // file System (node.js packet to handle file sytem for upload, delete, update, read etc)
+import { v2 as cloudinary } from "cloudinary"
+import fs from "fs" // file System (node.js packet to handle file sytem for upload, delete, update, read etc)
 
 //configuration
 cloudinary.config({ 
@@ -9,7 +9,7 @@ cloudinary.config({
     });
 
 
-    // Upload an image
+// Upload an image
 const uploadResult = await cloudinary.uploader
        .upload(
            'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
@@ -21,11 +21,11 @@ const uploadResult = await cloudinary.uploader
        });
 
 
-const uploadOnCloudinary = async = (localFilePath) => {
+const uploadOnCloudinary = async (localFilePath) => {
     try {
         if(!localFilePath) return console.log("Cannot file File Path !!")
 
-    const response = await .upload(localFilePath, {
+    const response = await cloudinary.uploader.upload(localFilePath, {
         resource_type : "auto"
     })
 

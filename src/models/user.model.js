@@ -1,8 +1,8 @@
-import mongoose,{Schema, schema} from "mongoose";
+import mongoose,{ Schema } from "mongoose";
 import bcrypt from "bcrypt";    //bcrypt is a library used to hash passwords before storing them in a database. We use it because we should never store users' passwords as plain text.
 import jwt from "jsonwebtoken";  //We are using JWT for authentication 
 
-const userSchema = new schema(
+const userSchema = new Schema(
     {
         username: {
             type: String,
@@ -62,7 +62,7 @@ const userSchema = new schema(
 userSchema.pre("save", async function (next) {          //do something before a specific Mongoose operation happens. (Pre is a middleware of mongoose)
     if(!this.isModified("password")) return next();
 
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 
